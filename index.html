@@ -237,71 +237,115 @@ button{
         Trình duyệt không hỗ trợ video
     </video>
 
-    <!-- ĐÁNH GIÁ -->
-    <div class="stars" id="stars">
-        <span data-star="1">★</span>
-        <span data-star="2">★</span>
-        <span data-star="3">★</span>
-        <span data-star="4">★</span>
-        <span data-star="5">★</span>
-    </div>
-    <div id="ratingText"></div>
+  <title>Đánh giá & Bình luận</title>
 
-    <!-- BÌNH LUẬN -->
-    <textarea id="comment" placeholder="Nhập bình luận của bạn..."></textarea>
-    <button onclick="saveComment()">Gửi bình luận</button>
+<style>
+body{
+  font-family:Arial;
+  background:#0d0d0d;
+  color:#eee;
+  padding:20px;
+}
+.box{
+  max-width:600px;
+  margin:auto;
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+}
+.stars span{
+  font-size:30px;
+  cursor:pointer;
+  color:#555;
+}
+.comment{
+  background:#1a1a1a;
+  padding:10px;
+  border-radius:10px;
+  margin-top:8px;
+}
+textarea{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+}
+button{
+  margin-top:8px;
+  padding:8px 15px;
+  border:none;
+  border-radius:20px;
+  background:#ff9800;
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
 
-    <div id="commentList"></div>
+<body>
 
+<div class="box">
+  <h3>⭐ Đánh giá</h3>
+  <div class="stars">
+    <span onclick="rate(1)">★</span>
+    <span onclick="rate(2)">★</span>
+    <span onclick="rate(3)">★</span>
+    <span onclick="rate(4)">★</span>
+    <span onclick="rate(5)">★</span>
+  </div>
+  <p id="ratingText"></p>
+
+  <h3>💬 Bình luận</h3>
+  <textarea id="comment" placeholder="Nhập bình luận..."></textarea>
+  <button onclick="send()">Gửi</button>
+  <div id="list"></div>
 </div>
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
 <script>
-let stars = document.querySelectorAll('.stars span');
-let ratingText = document.getElementById('ratingText');
-let currentRating = localStorage.getItem('rating') || 0;
+firebase.initializeApp({
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID"
+});
+const db = firebase.firestore();
 
-function updateStars(rating){
-    stars.forEach(s=>{
-        s.classList.toggle('active', s.dataset.star <= rating);
-    });
-    ratingText.innerText = rating > 0 ? `Bạn đã đánh giá ${rating} sao ⭐` : '';
+/* ĐÁNH GIÁ */
+function rate(s){
+  db.collection("ratings").add({star:s});
 }
-
-updateStars(currentRating);
-
-stars.forEach(star=>{
-    star.onclick = () =>{
-        currentRating = star.dataset.star;
-        localStorage.setItem('rating', currentRating);
-        updateStars(currentRating);
-    }
+db.collection("ratings").onSnapshot(snap=>{
+  let sum=0;
+  snap.forEach(d=>sum+=d.data().star);
+  ratingText.innerText =
+    `⭐ Trung bình: ${(sum/snap.size).toFixed(1)}/5 (${snap.size} lượt)`;
 });
 
-function saveComment(){
-    let text = document.getElementById('comment').value;
-    if(text.trim() === '') return;
-
-    let comments = JSON.parse(localStorage.getItem('comments') || '[]');
-    comments.push(text);
-    localStorage.setItem('comments', JSON.stringify(comments));
-    document.getElementById('comment').value = '';
-    loadComments();
+/* BÌNH LUẬN */
+function send(){
+  if(!comment.value.trim()) return;
+  db.collection("comments").add({
+    text: comment.value,
+    time: Date.now()
+  });
+  comment.value="";
 }
-
-function loadComments(){
-    let comments = JSON.parse(localStorage.getItem('comments') || '[]');
-    let html = '';
-    comments.forEach(c=>{
-        html += `<div class="comment">💬 ${c}</div>`;
-    });
-    document.getElementById('commentList').innerHTML = html;
-}
-loadComments();
+db.collection("comments")
+.orderBy("time","desc")
+.onSnapshot(snap=>{
+  list.innerHTML="";
+  snap.forEach(d=>{
+    list.innerHTML += `<div class="comment">💬 ${d.data().text}</div>`;
+  });
+});
 </script>
 
 </body>
         
     </html>
+
 
 
 
