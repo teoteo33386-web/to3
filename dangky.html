@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đăng ký</title>
+ <style>
+body{
+    font-family: Arial;
+    background: #fdf2e9;
+}
+
+/* HỘP ĐĂNG KÝ */
+.box{
+    width: 320px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+h3{
+    text-align: center;
+    color: #ff9800;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+/* NÚT ĐĂNG KÝ */
+button{
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: linear-gradient(45deg,#ff9800,#ff5722);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: 0.9;
+}
+
+a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+/* NÚT GÓC PHẢI (QUAY VỀ) */
+.top-right{
+    position: fixed;
+    top: 15px;
+    right: 20px;
+}
+
+.top-right a{
+    background: #2196f3;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NÚT GÓC PHẢI -->
+<div class="top-right">
+    <a href="to3.html">Trang báo tường</a>
+</div>
+
+<div class="box">
+<h3>Đăng ký tài khoản</h3>
+
+<input id="tk" placeholder="Tên đăng ký">
+<input id="mk" type="password" placeholder="Mật khẩu">
+
+<button onclick="dangKy()">Đăng ký</button>
+<a href="dangnhap.html">Đã có tài khoản? Đăng nhập</a>
+</div>
+
+<script>
+function dangKy(){
+    let tk = document.getElementById("tk").value;
+    let mk = document.getElementById("mk").value;
+
+    if(tk=="" || mk==""){
+        alert("Vui lòng nhập đầy đủ!");
+        return;
+    }
+
+    localStorage.setItem("tk", tk);
+    localStorage.setItem("mk", mk);
+    localStorage.setItem("login","yes");
+
+    alert("Đăng ký thành công!");
+    window.location.href="to3.html";
+}
+</script>
+
+</body>
+</html>
+
+

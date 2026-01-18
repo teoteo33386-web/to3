@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+</head>
+<body>
+
+<h3>Đăng nhập</h3>
+
+Tên tài khoản <br>
+<input type="text" id="user"><br><br>
+
+Mật khẩu <br>
+<input type="password" id="pass"><br><br>
+
+<button onclick="dangNhap()">Đăng nhập</button>
+
+<script>
+function dangNhap(){
+    var u = document.getElementById("user").value;
+    var p = document.getElementById("pass").value;
+
+    if(
+        u === localStorage.getItem("tk") &&
+        p === localStorage.getItem("mk")
+    ){
+        localStorage.setItem("login", "yes");
+        alert("Đăng nhập thành công!");
+        window.location.href = "to3.html";
+    } else {
+        alert("Sai tài khoản hoặc mật khẩu!");
+    }
+}
+</script>
+
+</body>
+</html>
