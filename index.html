@@ -228,80 +228,69 @@ button{
     Trình duyệt không hỗ trợ video
   </video>
 
-  <!-- ĐÁNH GIÁ + BÌNH LUẬN -->
-  <div class="box">
+ <div id="binhluan" class="comment-box"></div>
 
-    <h3>⭐ Đánh giá</h3>
-    <div class="stars">
-      <span onclick="rate(1)">★</span>
-      <span onclick="rate(2)">★</span>
-      <span onclick="rate(3)">★</span>
-      <span onclick="rate(4)">★</span>
-      <span onclick="rate(5)">★</span>
-    </div>
-    <p id="ratingText"></p>
-
-    <h3>💬 Bình luận</h3>
-    <textarea id="comment" placeholder="Nhập bình luận..."></textarea>
-    <button onclick="send()">Gửi</button>
-    <div id="list"></div>
-
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const supabaseUrl = "https://jszkpzhtwtlmiwqjjgtd.supabase.co";
-const supabaseKey = "sb_publishable_TY4xxBZTnD7E0l5AODJYng_34uTl6kw";
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+let login = localStorage.getItem("login");
+let tk = localStorage.getItem("tk");
 
-const list = document.getElementById("list");
-const comment = document.getElementById("comment");
+/* HIỂN THỊ */
+function hienBinhLuan(){
+    let ds = JSON.parse(localStorage.getItem("binhluan")) || [];
+    let html = "<h3>💬 Bình luận</h3>";
 
-/* LOAD BÌNH LUẬN */
-async function loadComments(){
-  const { data, error } = await supabase
-    .from("comments")
-    .select("*")
-    .order("created_at", { ascending: false });
+    ds.forEach((bl,i)=>{
+        html += `
+        <div class="comment">
+            <div class="ten">${bl.ten}</div>
+            <div class="noidung">${bl.noidung}</div>
+            <div class="tym" onclick="thaTym(${i})">
+                ❤️ ${bl.tim}
+            </div>
+        </div>`;
+    });
 
-  if(error){
-    console.log(error);
-    return;
-  }
+    if(login === "yes"){
+        html += `
+        <p>Xin chào <b>${tk}</b></p>
+        <textarea id="nd" rows="3" placeholder="Nhập bình luận..."></textarea>
+        <button onclick="guiBinhLuan()">Gửi</button>`;
+    }else{
+        html += `
+        <p style="color:red; text-align:center;">
+            ⚠️ Vui lòng <a href="dangnhap.html">đăng nhập</a> để bình luận
+        </p>`;
+    }
 
-  list.innerHTML = "";
-  data.forEach(c=>{
-    list.innerHTML += `
-      <div class="comment">💬 ${c.content}</div>
-    `;
-  });
+    document.getElementById("binhluan").innerHTML = html;
 }
 
-/* GỬI BÌNH LUẬN */
-async function send(){
-  if(!comment.value.trim()) return;
+/* GỬI */
+function guiBinhLuan(){
+    let nd = document.getElementById("nd").value;
+    if(nd==""){ alert("Nhập bình luận!"); return; }
 
-  const { error } = await supabase
-    .from("comments")
-    .insert([{ content: comment.value }]);
-
-  if(error){
-    alert(error.message);
-    return;
-  }
-
-  comment.value="";
-  loadComments();
+    let ds = JSON.parse(localStorage.getItem("binhluan")) || [];
+    ds.push({ten:tk,noidung:nd,tim:0});
+    localStorage.setItem("binhluan",JSON.stringify(ds));
+    hienBinhLuan();
 }
 
-/* LOAD KHI MỞ WEB */
-loadComments();
+/* THẢ TIM */
+function thaTym(i){
+    let ds = JSON.parse(localStorage.getItem("binhluan"));
+    ds[i].tim++;
+    localStorage.setItem("binhluan",JSON.stringify(ds));
+    hienBinhLuan();
+}
+
+hienBinhLuan();
 </script>
 
 </body>
         
     </html>
+
 
 
 
