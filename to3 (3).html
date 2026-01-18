@@ -159,237 +159,157 @@ Dù khó khăn thử thách, hãy luôn cố gắng để biến ước mơ thà
 <table align="center" cellpadding="10">
     <tr>
         <td>
-            <img src="9f871ed2-2c23-45bc-8733-85fdb0fc9152.jfif" width="400"><br>
+            <img src="9f871ed2-2c23-45bc-8733-85fdb0fc9152.jfif" width="200"><br>
             Kỉ niệm học trò
         </td>
         <td>
-            <img src="3ac6e8e9-f679-48ad-aa6f-fca9131afea4.mp4" width="400"><br>
+            <img src="3ac6e8e9-f679-48ad-aa6f-fca9131afea4.mp4" width="200"><br>
             Ngày chia tay
         </td>
     </tr>
 </table>
+
+<title>Video giới thiệu</title>
+
 <style>
-/* ===== NỀN ĐEN KHU BÌNH LUẬN ===== */
-.comment-box{
-    max-width: 720px;
-    margin: 20px auto;
-    background: #0d0d0d;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 0 25px rgba(0,255,170,0.15);
-}
-
-/* ===== TIÊU ĐỀ BÌNH LUẬN NEON ===== */
-.comment-box h3{
-    color: #00ffcc;
-    text-shadow:
-        0 0 5px #00ffcc,
-        0 0 10px #00ffcc,
-        0 0 20px #00ffaa;
-    font-weight: bold;
-}
-
-/* ===== COMMENT ===== */
-.comment{
-    background: #111;
-    border-left: 4px solid #ff9800;
-    padding: 12px;
-    border-radius: 12px;
-    margin-top: 12px;
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.03);
-}
-
-/* TÊN */
-.ten{
-    color: #ff9800;
-    font-weight: bold;
-}
-
-/* NỘI DUNG */
-.noidung{
-    color: #e0e0e0;
-    margin-top: 4px;
-}
-
-/* TIM */
-.tym{
-    margin-top: 6px;
-    color: #ff4d4d;
-    cursor: pointer;
-    user-select: none;
-}
-
-/* Ô NHẬP */
-textarea{
-    background: #111;
-    color: #fff;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-
-/* NÚT */
-button{
-    background: linear-gradient(45deg,#ff9800,#ff5722);
-    color: white;
-    border-radius: 20px;
-}
-
 body{
     font-family: Arial, sans-serif;
-    background: #fdf2e9;
-    margin: 0;
-    padding: 0;
+    background:#f5f5f5;
 }
 
-/* VIDEO */
 .video-box{
-    max-width: 720px;
-    margin: 30px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    max-width:720px;
+    margin:30px auto;
+    background:#fff;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
 
 video{
-    width: 100%;
-    display: block;
-}
-.title {
-  text-align: center;
-  color: #ff9800;
-  margin-bottom: 10px;
+    width:100%;
+    border-radius:12px;
 }
 
-/* BÌNH LUẬN */
-.comment-box{
-    max-width: 720px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+/* Rating */
+.stars{
+    margin:15px 0;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.stars span{
+    color:#ccc;
+}
+
+.stars span.active{
+    color:gold;
+}
+
+/* Comment */
+textarea{
+    width:100%;
+    height:80px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    background:#28a745;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .comment{
-    background: linear-gradient(135deg,#ffffff,#f5f5f5);
-    border-left: 5px solid #ff9800;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.ten{
-    font-weight: bold;
-    color: #e65100;
-}
-
-.noidung{
-    color: #333;
-    margin-top: 3px;
-}
-
-/* Ô NHẬP */
-textarea{
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-}
-
-/* NÚT */
-button{
-    margin-top: 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    background: linear-gradient(45deg,#ff9800,#ff5722);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover{
-    opacity: 0.9;
-}
-
-/* TIM */
-.tym{
-    cursor: pointer;
-    font-size: 18px;
+    margin-top:15px;
+    background:#f1f1f1;
+    padding:10px;
+    border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
-<h3 style="text-align:center;">🎥 Video lớp 12E</h3>
 <div class="video-box">
+
+    <!-- VIDEO -->
     <video controls>
-        <source src="3ac6e8e9-f679-48ad-aa6f-fca9131afea4.mp4" type="video/mp4">
+        <source src="video.mp4" type="video/mp4">
         Trình duyệt không hỗ trợ video
     </video>
+
+    <!-- ĐÁNH GIÁ -->
+    <div class="stars" id="stars">
+        <span data-star="1">★</span>
+        <span data-star="2">★</span>
+        <span data-star="3">★</span>
+        <span data-star="4">★</span>
+        <span data-star="5">★</span>
+    </div>
+    <div id="ratingText"></div>
+
+    <!-- BÌNH LUẬN -->
+    <textarea id="comment" placeholder="Nhập bình luận của bạn..."></textarea>
+    <button onclick="saveComment()">Gửi bình luận</button>
+
+    <div id="commentList"></div>
+
 </div>
 
-<div id="binhluan" class="comment-box"></div>
-
 <script>
-let login = localStorage.getItem("login");
-let tk = localStorage.getItem("tk");
+let stars = document.querySelectorAll('.stars span');
+let ratingText = document.getElementById('ratingText');
+let currentRating = localStorage.getItem('rating') || 0;
 
-/* HIỂN THỊ */
-function hienBinhLuan(){
-    let ds = JSON.parse(localStorage.getItem("binhluan")) || [];
-    let html = "<h3>💬 Bình luận</h3>";
-
-    ds.forEach((bl,i)=>{
-        html += `
-        <div class="comment">
-            <div class="ten">${bl.ten}</div>
-            <div class="noidung">${bl.noidung}</div>
-            <div class="tym" onclick="thaTym(${i})">
-                ❤️ ${bl.tim}
-            </div>
-        </div>`;
+function updateStars(rating){
+    stars.forEach(s=>{
+        s.classList.toggle('active', s.dataset.star <= rating);
     });
+    ratingText.innerText = rating > 0 ? `Bạn đã đánh giá ${rating} sao ⭐` : '';
+}
 
-    if(login === "yes"){
-        html += `
-        <p>Xin chào <b>${tk}</b></p>
-        <textarea id="nd" rows="3" placeholder="Nhập bình luận..."></textarea>
-        <button onclick="guiBinhLuan()">Gửi</button>`;
-    }else{
-        html += `
-        <p style="color:red; text-align:center;">
-            ⚠️ Vui lòng <a href="dangnhap.html">đăng nhập</a> để bình luận
-        </p>`;
+updateStars(currentRating);
+
+stars.forEach(star=>{
+    star.onclick = () =>{
+        currentRating = star.dataset.star;
+        localStorage.setItem('rating', currentRating);
+        updateStars(currentRating);
     }
+});
 
-    document.getElementById("binhluan").innerHTML = html;
+function saveComment(){
+    let text = document.getElementById('comment').value;
+    if(text.trim() === '') return;
+
+    let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    comments.push(text);
+    localStorage.setItem('comments', JSON.stringify(comments));
+    document.getElementById('comment').value = '';
+    loadComments();
 }
 
-/* GỬI */
-function guiBinhLuan(){
-    let nd = document.getElementById("nd").value;
-    if(nd==""){ alert("Nhập bình luận!"); return; }
-
-    let ds = JSON.parse(localStorage.getItem("binhluan")) || [];
-    ds.push({ten:tk,noidung:nd,tim:0});
-    localStorage.setItem("binhluan",JSON.stringify(ds));
-    hienBinhLuan();
+function loadComments(){
+    let comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    let html = '';
+    comments.forEach(c=>{
+        html += `<div class="comment">💬 ${c}</div>`;
+    });
+    document.getElementById('commentList').innerHTML = html;
 }
-
-/* THẢ TIM */
-function thaTym(i){
-    let ds = JSON.parse(localStorage.getItem("binhluan"));
-    ds[i].tim++;
-    localStorage.setItem("binhluan",JSON.stringify(ds));
-    hienBinhLuan();
-}
-
-hienBinhLuan();
+loadComments();
 </script>
+
 </body>
         
     </html>
+
 
 
 
