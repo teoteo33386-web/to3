@@ -81,7 +81,33 @@
   text-align:center;
   color:#ffcc66;
 }
+.quiz-box{
+  max-width:500px;
+  margin:30px auto;
+  padding:20px;
+  background:#dff5ec;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  font-size:16px;
+  line-height:1.6;
+  color:#111;
+}
 
+.answer{
+  display:block;
+  background:#ffffff;
+  padding:10px 12px;
+  border-radius:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+  border:1px solid #cce5d9;
+  transition:0.2s;
+}
+
+.answer:hover{
+  background:#c8ebdd;
+}
+        
 .gallery{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -274,12 +300,30 @@
       Chúng em nguyện sẽ sống xứng đáng với màu áo Đoàn, với tuổi trẻ đầy khát
       vọng và trách nhiệm.
     </p>
-<b>CÂU HỎI ĐỐ VUI – TÌM HIỂU VỀ ĐOÀN TNCS HỒ CHÍ MINH</b>
-<br><br>
-1. Đoàn Thanh niên Cộng sản Hồ Chí Minh được thành lập vào năm nào?<br>
-2. Màu áo truyền thống của Đoàn là màu gì?<br>
-3. Bài hát truyền thống của Đoàn là gì?<br><br>
-👉 <i>Đáp án sẽ được bật mí ở cuối báo tường!</i>
+<div class="quiz-box">
+  <b>CÂU HỎI ĐỐ VUI – TÌM HIỂU VỀ ĐOÀN TNCS HỒ CHÍ MINH</b>
+  <br><br>
+  <p><b>1. Màu áo truyền thống của Đoàn là màu gì?</b></p>
+
+  <form>
+    <label class="answer">
+      <input type="radio" name="q1"> A. Màu đỏ
+    </label>
+
+    <label class="answer">
+      <input type="radio" name="q1"> B. Màu xanh dương
+    </label>
+
+    <label class="answer">
+      <input type="radio" name="q1"> C. Màu xanh lá cây
+    </label>
+
+    <label class="answer">
+      <input type="radio" name="q1"> D. Màu vàng
+    </label>
+  </form>
+  👉 <i>Vui lòng chọn đáp án đúng!</i>
+
 <div class="footer-text">
 ✨ Tuổi trẻ 12E – Tự hào truyền thống Đoàn – Vững bước tương lai! ✨
 </div>
@@ -450,6 +494,7 @@ function rate(stars) {
 </div>
 </body>
    </html>
+
 
 
 
